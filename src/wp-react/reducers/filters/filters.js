@@ -1,7 +1,18 @@
-const filters = (state = {
+export const initialState = {
   author: 0,
-  terms: []
-}, action) => {
+  terms: [],
+  search: '',
+  post: {
+    field: 'id',
+    value: null
+  },
+  pagination: {
+    count: 10,
+    page: 1
+  }
+}
+
+const filters = (state = initialState, action) => {
   const { type, filter, item, force } = action
   const newState = {}
   switch(type){
@@ -44,10 +55,7 @@ const filters = (state = {
       return Object.assign({}, state, newState)
 
     case 'RESET_FILTERS':
-      return {
-        author: 0,
-        terms: []
-      }
+      return initialState
     default:
       return state
   }

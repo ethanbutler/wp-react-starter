@@ -4,6 +4,7 @@ import thunk                                     from "redux-thunk"
 import logger                                    from "redux-logger"
 import createHistory                             from "history/createBrowserHistory"
 import rootReducer                               from "./reducers"
+import { initialState as initialFilters }        from "./reducers/filters/filters"
 
 import {
   parseTerms,
@@ -19,17 +20,13 @@ const initialState = {
   isLoading: false,
   error: null,
   posts: [],
-  filters: {
-    author: 0,
-    terms: []
-  },
+  filters: initialFilters,
   sort: {
     orderby: 'date',
     order: 'desc'
   },
   authors: parseAuthors(authorsData),
-  terms: parseTerms(taxonomyData),
-  currentPage: 1
+  terms: parseTerms(taxonomyData)
 }
 
 const enhancers = []
@@ -43,7 +40,6 @@ if(process.env.NODE_ENV === 'development'){
   if(typeof devToolsExtension === 'function'){
     enhancers.push(devToolsExtension)
   }
-
   middleware.push(logger)
 }
 
