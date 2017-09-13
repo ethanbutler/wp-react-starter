@@ -71,7 +71,7 @@ class Loop extends Component {
    */
   applySort({order, orderby}){
     return (a, b) => {
-      const asc = ( order === 'asc' )
+      const asc = (value) => value * (order === 'asc' ? 1 : -1)
       const terms = {
         a: a[orderby].rendered || a[orderby],
         b: b[orderby].rendered || b[orderby]
@@ -81,9 +81,9 @@ class Loop extends Component {
         typeof terms['a'] === 'string' &&
         typeof terms['b'] === 'string'
       ) {
-        return terms['a'].localeCompare(terms['b']) * (asc ? 1 : -1)
+        return asc(terms['a'].localeCompare(terms['b']))
       } else {
-        return terms['a'] - terms['b'] * (asc ? 1 : -1)
+        return asc(terms['a'] - terms['b'])
       }
     }
   }
