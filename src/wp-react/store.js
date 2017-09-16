@@ -8,9 +8,12 @@ import { initialState as initialFilters }        from "./reducers/filters/filter
 
 import {
   parseTerms,
-  parseAuthors
+  parseAuthors,
+  loadState,
+  saveState
 } from './utilities'
 
+const persistedState = loadState()
 const taxonomyData   = require('../_data/taxonomy')
 const authorsData    = require('../_data/authors')
 
@@ -50,8 +53,14 @@ const composedEnhancers = compose(
 
 const store = createStore(
   rootReducer,
-  initialState,
+  (persistedState ? Object.assign({}, initialState, persistedState) : initialState),
   composedEnhancers
 )
+
+store.subscribe(() => {
+  saveState({
+    posts: store.getState().posts
+  })
+})
 
 export default store

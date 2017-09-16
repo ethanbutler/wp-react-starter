@@ -35,17 +35,29 @@ class Query extends Component {
 
     console.log(`${this.baseUrl}${this.buildQuery(args)}`)
     axios.get(`${this.baseUrl}${this.buildQuery(args)}`)
-      .then(res => {
+      .then(({data}) => {
         console.log('Loading ends')
         dispatchLoading(false)
-        dispatchPosts(res.data)
+        dispatchPosts(data)
         if(typeof onComplete === 'function'){
-          onComplete(res.data)
+          onComplete(data)
         }
       })
-      .catch(err => {
-        console.log('Error')
-        dispatchErr(err)
+      .catch(({
+        response,
+        request,
+        message
+      })  => {
+        if(response){
+          console.log(response)
+          dispatchErr(response.status)
+        } else if(request){
+          console.log(request)
+          dispatchErr(request)
+        } else if(message){
+          console.log(message)
+          dispatchErr(message)
+        }
       })
   }
 
