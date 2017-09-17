@@ -1,7 +1,6 @@
 /* eslint no-restricted-globals: 0 */
 
-// const DEBUG = (process.env.NODE_ENV === 'production')
-const DEBUG = true
+const DEBUG = (process.env.NODE_ENV !== 'production')
 
 const {
   assets
