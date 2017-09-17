@@ -21,6 +21,7 @@ export const history = createHistory()
 
 const initialState = {
   isLoading: false,
+  isOffline: false,
   error: null,
   posts: [],
   filters: initialFilters,

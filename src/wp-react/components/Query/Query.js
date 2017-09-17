@@ -27,6 +27,7 @@ class Query extends Component {
       dispatchLoading,
       dispatchErr,
       dispatchPosts,
+      dispatchOffline,
       onComplete
     } = this.props
 
@@ -38,6 +39,7 @@ class Query extends Component {
       .then(({data}) => {
         console.log('Loading ends')
         dispatchLoading(false)
+        dispatchOffline(false)
         dispatchPosts(data)
         if(typeof onComplete === 'function'){
           onComplete(data)
@@ -48,13 +50,18 @@ class Query extends Component {
         request,
         message
       })  => {
-        if(response){
+        if(!navigator.onLine){
+          dispatchOffline(true)
+        }
+        else if(response){
           console.log(response)
           dispatchErr(response.status)
-        } else if(request){
+        }
+        else if(request){
           console.log(request)
           dispatchErr(request)
-        } else if(message){
+        }
+        else if(message){
           console.log(message)
           dispatchErr(message)
         }
@@ -100,6 +107,10 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   dispatchPosts: (posts) => dispatch({
     type: 'ADD_POSTS_TO_STACK',
     posts
+  }),
+  dispatchOffline: (isOffline) => dispatch({
+    type: 'SET_OFFLINE',
+    isOffline
   })
 }, dispatch)
 

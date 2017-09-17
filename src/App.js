@@ -20,13 +20,15 @@ class App extends Component {
     const {
       posts,
       terms,
-      authors
+      authors,
+      isOffline
     } = this.props
 
     const taxonomies = Object.getOwnPropertyNames(terms)
 
     return (
       <div>
+        {isOffline ? <div>You appear to be offline.</div> : null}
         <Header />
         <main>
           <Route path="/" exact render={() => <Index terms={terms}/>} />
