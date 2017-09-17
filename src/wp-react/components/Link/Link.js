@@ -2,6 +2,7 @@ import React, { Component }   from "react"
 import { connect }            from "react-redux"
 import { push }               from "react-router-redux"
 import { bindActionCreators } from "redux"
+import "./Link.css"
 
 class Link extends Component {
   render() {
@@ -26,12 +27,12 @@ class Link extends Component {
     if(authorId){
       const match = authors.filter((author) => author.id === authorId)[0]
       destination = `/author/${match.slug}`
-      inner = match[display]
+      inner = children || match[display]
       action = () => { handleAuthor(match) }
     } else if(termId){
       const match = terms[taxonomy].filter((term) => term.id === termId)[0]
       destination = `/${taxonomy}/${match.slug}`
-      inner = match[display]
+      inner = children || match[display]
       action = () => { handleTerms({
         id: match.id,
         taxonomy
@@ -39,13 +40,15 @@ class Link extends Component {
     }
 
     return (
-      <a
+      <span
+        className="Link"
         tabIndex={0}
         onClick={() => {
+          window.scrollTo(0,0)
           go(destination)
           if(action) action()
         }}
-      >{inner}</a>
+      >{inner}</span>
     )
   }
 }

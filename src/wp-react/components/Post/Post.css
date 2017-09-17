@@ -1,0 +1,62 @@
+.post {
+  margin: 0 3rem 3rem 0;
+  padding: 0 0 2rem;
+  border-bottom: 1px solid #eee;
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  grid-column-gap: 1rem;
+  grid-template-rows: auto;
+  grid-template-areas:
+    ". heading heading"
+    "thumbnail meta ."
+    "thumbnail main main"
+    ". taxonomies taxonomies";
+}
+
+.heading {
+  grid-area: heading;
+  margin: 0 0 1rem;
+}
+
+.thumbnailWrap {
+  grid-area: thumbnail;
+}
+
+.thumbnail {
+  object-fit: contain;
+  width: 100%;
+  position: sticky;
+  top: 1rem;
+}
+
+.meta {
+  grid-area: meta;
+  padding: 0 0 .5em;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+  font-size: .8rem;
+  color: #999;
+  white-space: nowrap;
+}
+
+.main {
+  grid-area: main;
+}
+
+.main p {
+  margin: 0 0 1em;
+}
+
+.taxonomies {
+  padding: 2em 0 0;
+  grid-area: taxonomies;
+}
+
+.taxonomyHeader {
+  display: inline-block;
+  margin: 0 .25em 0 0;
+}
+
+.taxonomy + .taxonomyHeader {
+  margin-left: 2em;
+}

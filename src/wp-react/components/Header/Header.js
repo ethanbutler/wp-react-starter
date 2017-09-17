@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import "./Header.css"
 
 import {
   Link
@@ -6,9 +7,26 @@ import {
 
 class Header extends Component {
   render() {
+    const {
+      terms
+    } = this.props
+
+    const taxonomies = Object.getOwnPropertyNames(terms)
+
+    console.log(taxonomies)
+
     return (
-      <header>
+      <header className="Header">
         <Link path="/">Home</Link>
+        {taxonomies.map(taxonomy => {
+          return terms[taxonomy].map(term => {
+            const {
+              id,
+              name
+            } = term
+            return <Link taxonomy={taxonomy} termId={id}>{name}</Link>
+          })
+        })}
       </header>
     )
   }

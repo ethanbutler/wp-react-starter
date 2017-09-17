@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import "./FilterItem.css"
 
 class FilterItem extends Component {
   constructor(props){
@@ -30,13 +31,12 @@ class FilterItem extends Component {
 
     return (
       <span
+        className={`FilterItem FilterItem--${status ? status : 'none'}`}
         tabIndex="0"
         onClick={() => {handleChange(this.props)}}
         onKeyUp={this.handleKeyUp}
       >
         {children}
-        {status === 'included' ? ' * ' : ''}
-        {status === 'excluded' ? ' x ' : ''}
       </span>
     )
   }

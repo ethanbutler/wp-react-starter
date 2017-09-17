@@ -1,6 +1,7 @@
 import React, { Component }   from "react"
 import { connect }            from "react-redux"
 import { bindActionCreators } from "redux"
+import "./Index.css"
 
 import {
   Error,
@@ -42,35 +43,40 @@ class Index extends Component {
     } = this.props
 
     return (
-      <div>
-        <h1>WP-React-Starter</h1>
-        <div>
-          <strong>Posts categorized:</strong>
-          <FilterBank taxonomy={"categories"} items={terms.categories} />
+      <div className="index">
+        <div className="main">
+          <Query
+            args={args}
+            errorMessage={this.renderError}
+            loader={this.renderLoader}
+          />
+          <Loop
+            posts={[]}
+            renderer={this.renderSingle}
+            empty={this.renderNoResults}
+          />
         </div>
-        <div>
-          <strong>Posts tagged:</strong>
-          <FilterBank taxonomy={"tags"} items={terms.tags} multi={true} />
+        <div className="sidebar">
+          <div className="sidebar-inner">
+            <div className="sidebar-group">
+              <strong>Sort</strong>
+              <Sort />
+            </div>
+            <div className="sidebar-group">
+              <strong>Posts categorized:</strong>
+              <FilterBank taxonomy={"categories"} items={terms.categories} />
+            </div>
+            <div className="sidebar-group">
+              <strong>Posts tagged:</strong>
+              <FilterBank taxonomy={"tags"} items={terms.tags} multi={true} />
+            </div>
+            <div className="sidebar-group">
+              <strong>Posts not in:</strong>
+              <FilterBank taxonomy={"categories"} items={terms.categories} exclude={true} multi={true} />
+              <FilterBank taxonomy={"tags"} items={terms.tags} exclude={true} multi={true} />
+            </div>
+          </div>
         </div>
-        <div>
-          <strong>Posts not in:</strong>
-          <FilterBank taxonomy={"categories"} items={terms.categories} exclude={true} multi={true} />
-          <FilterBank taxonomy={"tags"} items={terms.tags} exclude={true} multi={true} />
-        </div>
-        <div>
-          <strong>Sort</strong>
-          <Sort />
-        </div>
-        <Query
-          args={args}
-          errorMessage={this.renderError}
-          loader={this.renderLoader}
-        />
-        <Loop
-          posts={[]}
-          renderer={this.renderSingle}
-          empty={this.renderNoResults}
-        />
       </div>
     )
   }

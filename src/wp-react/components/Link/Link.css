@@ -1,0 +1,28 @@
+.Link {
+  color: #888;
+  position: relative;
+  transition: all .2s ease;
+}
+
+.Link:after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  background: #888;
+  transition: all .2s ease;
+}
+
+.Link:hover {
+  color: #FF6E50;
+  cursor: pointer;
+}
+
+.Link:hover:after {
+  right: -2px;
+  left: -2px;
+  background: #FF6E50;
+}

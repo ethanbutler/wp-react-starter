@@ -1,0 +1,41 @@
+.FilterItem {
+  display: inline-block;
+  position: relative;
+  padding: .25em 1em;
+  margin: 0 0 .25em;
+  color: #888;
+}
+
+.FilterItem:before {
+  font-size: .5em;
+  position: absolute;
+  left: .5em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.FilterItem:focus {
+  outline: none;
+  background: #fafafa;
+}
+
+.FilterItem:hover {
+  color: #FF4492;
+  cursor: pointer;
+}
+
+.FilterItem--included {
+  color: #239E29!important;
+}
+
+.FilterItem--included:before {
+  content: '•'
+}
+
+.FilterItem--excluded {
+  color: #E8423E!important;
+}
+
+.FilterItem--excluded:before {
+  content: '×';
+}

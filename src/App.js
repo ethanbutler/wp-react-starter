@@ -15,6 +15,8 @@ import {
   Single
 } from "./wp-react/layouts"
 
+import "./App.css"
+
 class App extends Component {
   render() {
     const {
@@ -27,10 +29,10 @@ class App extends Component {
     const taxonomies = Object.getOwnPropertyNames(terms)
 
     return (
-      <div>
+      <div className="App">
         {isOffline ? <div>You appear to be offline.</div> : null}
-        <Header />
-        <main>
+        <Header terms={terms} />
+        <main className="Main">
           <Route path="/" exact render={() => <Index terms={terms}/>} />
           <Route path="/post/:slug" render={(props) => {
             const { slug } = props.match.params
@@ -51,7 +53,7 @@ class App extends Component {
             }}/>
           ))}
         </main>
-        <Footer />
+        <Footer className="Footer" />
       </div>
     )
   }

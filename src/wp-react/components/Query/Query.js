@@ -38,6 +38,7 @@ class Query extends Component {
     axios.get(`${this.baseUrl}${this.buildQuery(args)}`)
       .then(({data}) => {
         console.log('Loading ends')
+        console.log(data)
         dispatchLoading(false)
         dispatchOffline(false)
         dispatchPosts(data)
