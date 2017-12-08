@@ -55,7 +55,7 @@
     "redux-logger": "^3.0.6"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "npm run sync && node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "sync": "node cli/dataSync"
