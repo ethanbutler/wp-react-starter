@@ -38,9 +38,9 @@ class Post extends Component {
           </span>
           <span className="date">&nbsp;on {moment(date).format('MMM d, YYYY, h:mm:ss a')}</span>
         </div>
-        <div className="thumbnailWrap">
+        {featured_media_objects ? (<div className="thumbnailWrap">
           {featured_media_objects[3] ? <img className="thumbnail" src={featured_media_objects[3][0]} alt={`Post Thumbnail`}/> : null}
-        </div>
+        </div>) : null}
         <div className="main">
           <div className="excerpt" dangerouslySetInnerHTML={this.html(excerpt.rendered)}></div>
           <Link path={`/post/${slug}`}>{linkText}</Link>

@@ -51,6 +51,8 @@ class Query extends Component {
         request,
         message
       })  => {
+        dispatchLoading(false)
+        console.log('HANDLED')
         if(!navigator.onLine){
           dispatchOffline(true)
         }
